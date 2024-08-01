@@ -17,13 +17,12 @@ export function usePaginatedTransactions(): PaginatedTransactionsResult {
       }
     )
 
-    setPaginatedTransactions((previousResponse: PaginatedResponse<Transaction[]>) => {
+    setPaginatedTransactions((previousResponse) => {
       if (response === null || previousResponse === null) {
         return response
       }
-      // #bug 4
-      return { data: [...previousResponse.data, ...response.data], nextPage: response.nextPage }
 
+      return { data: [...previousResponse.data, ...response.data], nextPage: response.nextPage }
     })
   }, [fetchWithCache, paginatedTransactions])
 
